@@ -1,0 +1,14 @@
+[
+    {
+        "id":1,
+        "name":"mahima",
+        "email":"mahi.gmail.com",
+        "gender": "female"
+    },
+    {
+        "id":2,
+        "name":"chinmay",
+        "email":"chin.gmail.com",
+        "gender": "male"
+    }
+]
