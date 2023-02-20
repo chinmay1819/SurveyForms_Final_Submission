@@ -157,22 +157,17 @@ const downloadCSVofResponses=async(req,res)=>{
   const fields=['email','formId','responseContent'];
   const opts={fields};
   try{
-    // const csv=parse(responses,opts);
-    // fs.watchFile("responses.csv",csv,function(error){
-    //   if(error) throw error;
-    //   console.log("Downloading...")
-    // })
-    // console.log(csv);
+    
 
 
     const json2csvParser=new Parser();
     const csv=json2csvParser.parse(responses);
-    // console.log(csv);
+    
     fs.writeFile("responses.csv", csv, function(err) {
       if(err) {
       throw err;
       }
-      console.log('File Saved');
+     
       })
     
 
