@@ -1,5 +1,7 @@
 const express = require("express");
 
+const {Parser}=require('json2csv');
+const fs=require('fs')
 const responseModel=require('../models/response')
 const formModel=require('../models/form');
 
@@ -148,17 +150,40 @@ const fillResponse=async(req,res)=>{
 
 
 // FOR DOWNLOADING CSV FILE 
-// const downloadResponses=async(req,res)=>{
-//   const id=req.params.id;
-//   let responses=responseModel.find({formId:id})
-  
-  
-//   try{
-//     const csv=parse()
-//   }
+
+const downloadCSVofResponses=async(req,res)=>{
+  let fid=req.params.id;
+  let responses=await responseModel.find({formId:fid});
+  const fields=['email','formId','responseContent'];
+  const opts={fields};
+  try{
+    // const csv=parse(responses,opts);
+    // fs.watchFile("responses.csv",csv,function(error){
+    //   if(error) throw error;
+    //   console.log("Downloading...")
+    // })
+    // console.log(csv);
 
 
-// }
+    const json2csvParser=new Parser();
+    const csv=json2csvParser.parse(responses);
+    // console.log(csv);
+    fs.writeFile("responses.csv", csv, function(err) {
+      if(err) {
+      throw err;
+      }
+      console.log('File Saved');
+      })
+    
+
+  }
+  catch(error){
+    console.log(error)
+  }
+
+
+}
+
 
 //For getting all responses of a form using form id
 
@@ -167,8 +192,9 @@ const getResponesFormId = async (req,res)=>{
   
   let fid=req.params.formId;
   try{
-    const responses=await responseModel.find({"formId":fid}).populate("userId");
-    res.status(200).json(responses);
+    let responses=await responseModel.find({formId:fid});
+    res.status(201).json(responses);
+
 
   }
   catch(error){
@@ -191,10 +217,9 @@ module.exports= {
     updateResponse,
     getAllResponses,
     fillResponse,
-    getResponesFormId
+    getResponesFormId,
+    downloadCSVofResponses
 }
-
-
 
 
 

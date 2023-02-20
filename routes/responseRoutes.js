@@ -4,7 +4,7 @@ const auth=require('../middlewares/auth');
 const authforadmin=require('../middlewares/authforadmin')
 
 
-const {createResponse,getResponse,deleteResponse, updateResponse,getAllResponses,fillResponse, getResponesFormId}=require('../controllers/responseController');
+const {createResponse,getResponse,deleteResponse, updateResponse,getAllResponses,fillResponse, getResponesFormId, downloadCSVofResponses}=require('../controllers/responseController');
 
 
 const responseRouter=express.Router();
@@ -31,5 +31,8 @@ responseRouter.get('/fillResponse/:id',fillResponse);
 
 responseRouter.get('/getResponsesFormId/:id',auth,getResponesFormId);
 
-module.exports=responseRouter;
+//for downloading csv of responses
+responseRouter.get('/downloadcsv/:id',auth,downloadCSVofResponses);
 
+
+module.exports=responseRouter;
