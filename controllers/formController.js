@@ -116,13 +116,32 @@ const getFormById=async(req,res)=>{
 }
 
 
+//FOR GETTING BY SURVEY ID REQUIRED FOR FE
+
+const getFormBySurveyID=async(req,res)=>{
+  try{
+    const form=await formModel.findOne({
+      _id:req.params.id
+    })
+    res.status(200).json(form);
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).json({message:"Something went wrong..."});
+  }
+}
+
+
+
+
 module.exports = {
   createForm,
   updateForm,
   deleteForm,
   getForms,
   getFormById,
-  getAllForms
+  getAllForms,
+  getFormBySurveyID
 };
 
 

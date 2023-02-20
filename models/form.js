@@ -19,7 +19,7 @@ const formSchema = mongoose.Schema(
         {
           questionContent:{type:String},
           questionNumber:{type:Number},
-          questionType: {
+          answerType: {
             type: String
             // required: true,
           },

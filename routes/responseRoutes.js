@@ -14,7 +14,7 @@ const responseRouter=express.Router();
 
 
 
-responseRouter.get('/',auth,getResponse)
+responseRouter.post('/res',auth,getResponse)
 
 responseRouter.post('/',auth,createResponse)
 

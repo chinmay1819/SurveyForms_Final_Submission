@@ -7,10 +7,15 @@ const formModel=require('../models/form');
 //FOR CREATING A RESPONSE TO THE FORM...
 const createResponse = async (req, res) => {
 
-responseModel.create( {  'responseContent': req.body.responseContent, 
+responseModel.create( {  
+                        'title':req.body.title,
+                        'survey':req.body.survey,
+                        'email':req.body.email,
+                        // 'responseContent': req.body.responseContent, 
                         'userId':req.userId,
                         'formId':req.body.formId,
-                        'questionId':req.body.questionId
+                        // 'questionId':req.body.questionId,
+                        
                     }, 
     (err, result ) => {
         if (err) {
@@ -31,16 +36,16 @@ const getResponse = async (req, res) => {
     let qid=req.body.questionId;
     let fid=req.body.formId;
     try {
-      const response = await responseModel.find({
-        userId: req.userId,
-        questionId:req.body.questionId,
-        formId:req.body.formId
-      });
+      // const response = await responseModel.find({
+      //   userId: req.userId,
+      //   questionId:req.body.questionId,
+      //   formId:req.body.formId
+      // });
       
-      const requiredForm=await formModel.findById(fid);
+      const requiredForm=await responseModel.find({formId:fid});
     
     res.status(200).json({
-        response
+        requiredForm
     });
 
     
@@ -162,7 +167,7 @@ const getResponesFormId = async (req,res)=>{
   
   let fid=req.params.formId;
   try{
-    const responses=await responseModel.findMany({"formId":fid});
+    const responses=await responseModel.find({"formId":fid}).populate("userId");
     res.status(200).json(responses);
 
   }
