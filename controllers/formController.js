@@ -7,6 +7,7 @@ const createForm = async (req, res) => {
 formModel.create( {  
                         'title': req.body.title, 
                         'description': req.body.description, 
+                        'type':req.body.type,
                         'questions':req.body.questions,
                         'userId':req.userId
                     }, 
@@ -123,11 +124,11 @@ const getFormBySurveyID=async(req,res)=>{
     const form=await formModel.findOne({
       _id:req.params.id
     })
-    res.status(200).json(form);
+     res.status(200).json(form);
   }
   catch(error){
     console.log(error);
-    res.status(500).json({message:"Something went wrong..."});
+    // res.status(500).json({message:"Something went wrong..."});
   }
 }
 

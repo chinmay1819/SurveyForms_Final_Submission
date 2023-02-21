@@ -32,7 +32,7 @@ responseRouter.get('/fillResponse/:id',fillResponse);
 responseRouter.get('/getResponsesFormId/:id',auth,getResponesFormId);
 
 //for downloading csv of responses
-responseRouter.get('/downloadcsv/:id',auth,downloadCSVofResponses);
+responseRouter.get('/downloadcsv/:id',downloadCSVofResponses);
 
 
 module.exports=responseRouter;

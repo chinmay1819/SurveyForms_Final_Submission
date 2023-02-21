@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {Parser}=require('json2csv');
+const { Parser }=require('json2csv');
 const fs=require('fs')
 const responseModel=require('../models/response')
 const formModel=require('../models/form');
@@ -154,10 +154,18 @@ const fillResponse=async(req,res)=>{
 const downloadCSVofResponses=async(req,res)=>{
   let fid=req.params.id;
   let responses=await responseModel.find({formId:fid});
-  const fields=['email','formId','responseContent'];
-  const opts={fields};
-  try{
-    
+  // const fields=['email','formId','responseContent'];
+  // const opts={fields};
+  // try{
+  //   const csv=parse(responses,opts);
+  //   fs.writeFile("response.csv",csv,function(error){
+  //     if(error) throw error;
+  //     console.log('write successfully..');
+  //   })
+  // }
+  // catch(err){
+  //   console.log(err);
+  // }
 
 
     const json2csvParser=new Parser();
@@ -171,10 +179,15 @@ const downloadCSVofResponses=async(req,res)=>{
       })
     
 
-  }
-  catch(error){
-    console.log(error)
-  }
+  // }
+  // catch(error){
+  //   console.log(error)
+  // }
+
+
+  
+
+
 
 
 }
@@ -187,7 +200,7 @@ const getResponesFormId = async (req,res)=>{
   
   let fid=req.params.formId;
   try{
-    let responses=await responseModel.find({formId:fid});
+    let responses=await responseModel.findOne({formId:fid});
     res.status(201).json(responses);
 
 
