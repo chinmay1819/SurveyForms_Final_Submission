@@ -23,6 +23,9 @@ app.use("/users", userRouter);
 app.use("/form", formRouter);
 app.use("/response",responseRouter);
 app.use('/public', express.static('public'));
+app.get('/',(req,res)=>{
+  res.send('working....');
+})
 
 mongoose.connect(
     "mongodb+srv://chinmay1819:c9403000981@cluster0.8j3na.mongodb.net/SurveyForms?retryWrites=true&w=majority"
