@@ -1,0 +1,42 @@
+// 
+h1{
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+  // background-image: url("https://cdn.pixabay.com/photo/2017/01/13/18/56/feedback-1977986__480.jpg");
+  background-size: cover;
+    background-repeat: no-repeat;
+    padding: 5px;
+    width :cover;
+    margin-bottom: 50px;
+}
+
+.button{
+  color: black;
+  font-size: large;
+  text-align: center;
+  margin: auto;
+  display: block;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  width: 500px;
+  border-radius: 10px;
+  background-color:transparent;
+}
+
+.create-form{
+  background-color:transparent;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+}
+
+.viewRes{
+  background-color:transparent;
+font-family: 'Times New Roman', Times, serif;
+color: black;
+}
