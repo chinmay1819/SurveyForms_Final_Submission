@@ -1,6 +1,7 @@
 const express = require("express");
 
-const { Parser }=require('json2csv');
+// const { Parser }=require('json2csv');
+const {parse}=require('json2csv');
 const fs=require('fs')
 const responseModel=require('../models/response')
 const formModel=require('../models/form');
@@ -154,40 +155,30 @@ const fillResponse=async(req,res)=>{
 const downloadCSVofResponses=async(req,res)=>{
   let fid=req.params.id;
   let responses=await responseModel.find({formId:fid});
-  // const fields=['email','formId','responseContent'];
-  // const opts={fields};
-  // try{
-  //   const csv=parse(responses,opts);
-  //   fs.writeFile("response.csv",csv,function(error){
-  //     if(error) throw error;
-  //     console.log('write successfully..');
-  //   })
-  // }
-  // catch(err){
-  //   console.log(err);
-  // }
+  const fields=['email','formId','survey'];
+  const opts={fields};
+  try{
+    const csv=parse(responses,opts);
+    fs.writeFile(`response__${fid}.csv`,csv,function(error){
+      if(error) throw error;
+      console.log('write successfully..');
+    })
+  }
+  catch(err){
+    console.log(err);
+  }
 
-
-    const json2csvParser=new Parser();
-    const csv=json2csvParser.parse(responses);
+//THIS WORKS......
+    // const json2csvParser=new Parser();
+    // const csv=json2csvParser.parse(responses);
     
-    fs.writeFile("responses.csv", csv, function(err) {
-      if(err) {
-      throw err;
-      }
+    // fs.writeFile("responses.csv", csv, function(err) {
+    //   if(err) {
+    //   throw err;
+    //   }
      
-      })
+    //   })
     
-
-  // }
-  // catch(error){
-  //   console.log(error)
-  // }
-
-
-  
-
-
 
 
 }

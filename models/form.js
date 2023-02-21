@@ -23,7 +23,7 @@ const formSchema = mongoose.Schema(
             type: String
             // required: true,
           },
-          possibleResponses:{
+         options:{
             type:[
               {type:String}
             ]
