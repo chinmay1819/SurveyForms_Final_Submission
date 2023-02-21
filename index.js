@@ -10,7 +10,7 @@ const ejs=require('ejs');
 app.set('view engine','ejs');
 const {parse}=require('json2csv');  
 const fs=require('fs'); 
-
+const port =process.env.port || 5000
 
 app.use((req,res,next)=>{
 	console.log("HTTP METHOD - " + req.method + ", URL -" + req.url);
@@ -28,8 +28,8 @@ mongoose.connect(
     "mongodb+srv://chinmay1819:c9403000981@cluster0.8j3na.mongodb.net/SurveyForms?retryWrites=true&w=majority"
   )
   .then(() => {
-    app.listen(5000, () => {
-      console.log("Server started 5000 and connected to Database");
+    app.listen(port, () => {
+      console.log(`Server started ${port} and connected to Database`);
     });
   })
   .catch((err) => {

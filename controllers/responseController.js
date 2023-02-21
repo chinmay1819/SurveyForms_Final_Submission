@@ -154,7 +154,9 @@ const fillResponse=async(req,res)=>{
 
 const downloadCSVofResponses=async(req,res)=>{
   let fid=req.params.id;
+  
   let responses=await responseModel.find({formId:fid});
+  
   const fields=['email','formId','survey'];
   const opts={fields};
   try{
@@ -167,6 +169,11 @@ const downloadCSVofResponses=async(req,res)=>{
   catch(err){
     console.log(err);
   }
+
+
+
+
+
 
 //THIS WORKS......
     // const json2csvParser=new Parser();
